@@ -23,7 +23,7 @@ class DestinationExplorer extends Component
 
     public function search()
     {
-        $searchTerm = $this->searchTerm;
+        $searchTerm = strtolower($this->searchTerm);
 
         if (empty($searchTerm)) {
             $this->filteredDestinations = $this->destinations;
@@ -31,12 +31,12 @@ class DestinationExplorer extends Component
         }
 
         $this->filteredDestinations = array_filter($this->destinations, function ($destination) use ($searchTerm) {
-            return str_contains($destination['name'], $searchTerm) ||
-                str_contains($destination['country'], $searchTerm) ||
-                str_contains($destination['region'], $searchTerm) ||
-                str_contains($destination['cost_level'], $searchTerm) ||
-                str_contains(json_encode($destination['activities']), $searchTerm) ||
-                str_contains($destination['average_daily_budget'], $searchTerm);
+            return str_contains(strtolower($destination['name']), $searchTerm) ||
+                str_contains(strtolower($destination['country']), $searchTerm) ||
+                str_contains(strtolower($destination['region']), $searchTerm) ||
+                str_contains(strtolower($destination['cost_level']), $searchTerm) ||
+                str_contains(strtolower(json_encode($destination['activities'])), $searchTerm) ||
+                str_contains(strtolower($destination['average_daily_budget']), $searchTerm);
         });
     }
 
