@@ -13,3 +13,9 @@ protected $attributes = [
     'activities' => '[]',
 ];
 
+Uncommented in DestinationExplorer to use DB data, and got some errors
+1) on blade- had to default to [] when using implode
+2) added cast as an array in model
+
+Uncommented in DestinationController for the API to use the database
+Used postman to hit http://localhost:8000/api/destinations to confirm data coming across

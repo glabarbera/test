@@ -9,9 +9,9 @@ class DestinationController extends Controller
     public function index()
     {
         // Uncomment this to use the database
-        // $data = \App\Models\Destination::all();
+        $data = \App\Models\Destination::all();
 
-        $data = $this->getHardcodedDestinations();
+        //$data = $this->getHardcodedDestinations();
 
         return response()->json(['data' => $data]);
     }
