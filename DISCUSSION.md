@@ -19,3 +19,10 @@ Uncommented in DestinationExplorer to use DB data, and got some errors
 
 Uncommented in DestinationController for the API to use the database
 Used postman to hit http://localhost:8000/api/destinations to confirm data coming across
+
+Made search case-insensitive in DestinationExplorer
+
+Made dollar format for daily budget, and commas via number_format for annual visitors
+
+Got activities displayed
+Using a ternary to implode the array-> if not we use an empty array []

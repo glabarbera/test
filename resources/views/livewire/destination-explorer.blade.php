@@ -1,14 +1,15 @@
-<div>
+<div class="container">
     <h1 style="font-size: 24px; font-weight: bold;">Project Expedition Destinations</h1>
     <br>
     <br>
     <div>
-        <p>Search</p>
+        <p><b>Search</b></p>
         <p>Searching for: <span id="search-term">{{ $searchTerm }}</span></p>
-        <input type="text" wire:model="searchTerm" wire:keydown="search" style="border: 1px solid black; padding: 4px;">
-        <button wire:click="resetSearch">Reset Search</button>
+        <input type="text" wire:model="searchTerm" wire:keydown="search" style="border: 1px solid black; padding: 4px;" placeholder="Type to search...">
+        <button wire:click="resetSearch" class="button">Reset Search</button>
     </div>
     <br>
+    <hr>
     <br>
     <div x-data="{ highlightedRow: null }">
         <table>
@@ -30,9 +31,9 @@
                     <td>{{ $destination['country'] }}</td>
                     <td>{{ $destination['region'] }}</td>
                     <td>{{ $destination['cost_level'] }}</td>
-                    <td>{{ implode(', ', $destination->activities ?? []) }}</td>
-                    <td>{{ $destination['average_daily_budget'] }}</td>
-                    <td>{{ $destination['annual_visitors'] }}</td>
+                    <td>{{ implode(', ', is_array($destination['activities']) ? $destination['activities'] : json_decode($destination['activities'] ?? '[]', true)) }}</td>
+                    <td>${{ number_format($destination['average_daily_budget'], 2) }}</td>
+                    <td>{{ number_format($destination['annual_visitors']) }}</td>
                 </tr>
                 @endforeach
             </tbody>
@@ -41,7 +42,23 @@
 
     <style>
         table { border-collapse: collapse; width: 100%; }
-        th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }
+        th, td { border: 1px solid #ddd; padding: 10px; text-align: left; }
         th { background-color: #f2f2f2; }
+
+        .container {
+            padding: 20px;
+        }
+
+        .button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 8px 16px;
+            border: none;
+            cursor: pointer;
+        }
+
+        .button:hover {
+            background-color: #45a049;
+        }
     </style>
 </div>
