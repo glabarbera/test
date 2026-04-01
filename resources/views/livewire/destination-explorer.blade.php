@@ -30,7 +30,7 @@
                     <td>{{ $destination['country'] }}</td>
                     <td>{{ $destination['region'] }}</td>
                     <td>{{ $destination['cost_level'] }}</td>
-                    <td>{{ implode(', ', $destination['activities']) }}</td>
+                    <td>{{ implode(', ', $destination->activities ?? []) }}</td>
                     <td>{{ $destination['average_daily_budget'] }}</td>
                     <td>{{ $destination['annual_visitors'] }}</td>
                 </tr>
