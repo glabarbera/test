@@ -19,3 +19,24 @@ Uncommented in DestinationExplorer to use DB data, and got some errors
 
 Uncommented in DestinationController for the API to use the database
 Used postman to hit http://localhost:8000/api/destinations to confirm data coming across
+
+Install Sanctum for auth for api endpoints
+composer require laravel/sanctum
+php artisan vendor:publish --provider="Laravel\Sanctum\SanctumServiceProvider"
+php artisan migrate (for creating access tokens table)
+
+add api routes encased in middleware
+make sure header in postman is sent as Accept: application/json
+
+I started process of making a checkAPIToken file
+I see I don't have a kernel in this project...
+I would normally add 'api.token' => \App\Http\Middleware\CheckApiToken::class right into kernel
+
+Instead I will need to add it manually in api route
+Added HasApiTokens trait to User model
+I used php artisan tinker to create user 
+$user = \App\Models\User::create([    'name' => 'API User',    'email' => 'api@example.com',    'password' => bcrypt('password'),]);
+$token = $user->createToken('API Token')->plainTextToken;
+
+use that as bearer token when connecting to api endpoints 
+1|HiPW0JYKhqFP7eB95KcAqy6Z3u1CZuog4zQXKiPx42885690
